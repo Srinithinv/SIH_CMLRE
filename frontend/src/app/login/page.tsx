@@ -82,7 +82,7 @@ export default function LoginPage() {
         <AquaticBackground />
       </div>
 
-      <div className="w-full max-w-md p-10 clean-card !bg-white/95 backdrop-blur-xl relative z-10 shadow-2xl overflow-hidden group">
+      <div className="w-full max-w-md p-6 sm:p-10 clean-card !bg-white/95 backdrop-blur-xl relative z-10 shadow-2xl overflow-hidden group">
         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary via-blue-400 to-primary animate-pulse"></div>
         
         <div className="text-center mb-10">

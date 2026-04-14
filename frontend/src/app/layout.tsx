@@ -13,6 +13,7 @@ export default function RootLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [isAuth, setIsAuth] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const checkAuth = () => {
@@ -48,38 +49,57 @@ export default function RootLayout({
           <AquaticBackground />
 
           {!isLoginPage && (
-            <aside className="sidebar shadow-2xl shadow-blue-900/5">
-              <div className="flex items-center gap-3 mb-12 px-2">
-                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-300">
-                  <span className="font-bold text-lg">C</span>
+            <>
+              {/* Mobile Hamburger */}
+              <button 
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="lg:hidden fixed top-6 right-6 z-[70] w-12 h-12 bg-white shadow-xl rounded-2xl flex items-center justify-center text-2xl border border-gray-100"
+              >
+                {isSidebarOpen ? '✕' : '☰'}
+              </button>
+
+              {/* Mobile Overlay */}
+              {isSidebarOpen && (
+                <div 
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="lg:hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[55] animate-in fade-in"
+                />
+              )}
+
+              <aside className={`sidebar ${!isSidebarOpen ? 'mobile-hidden' : ''} shadow-2xl shadow-blue-900/5`}>
+                <div className="flex items-center gap-3 mb-12 px-2">
+                  <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-300">
+                    <span className="font-bold text-lg">C</span>
+                  </div>
+                  <div>
+                    <h1 className="font-bold text-lg text-gray-900 leading-tight">CMLRE</h1>
+                    <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Intelligence</p>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="font-bold text-lg text-gray-900 leading-tight">CMLRE</h1>
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Intelligence</p>
-                </div>
-              </div>
-              
-              <nav className="flex-1 space-y-2">
-                {navItems.map((item) => (
-                  <Link 
-                    key={item.href} 
-                    href={item.href} 
-                    className={`nav-link ${pathname === item.href ? 'active' : ''}`}
+                
+                <nav className="flex-1 space-y-2">
+                  {navItems.map((item) => (
+                    <Link 
+                      key={item.href} 
+                      href={item.href} 
+                      onClick={() => setIsSidebarOpen(false)}
+                      className={`nav-link ${pathname === item.href ? 'active' : ''}`}
+                    >
+                      <span className="text-xl">{item.icon}</span> {item.name}
+                    </Link>
+                  ))}
+                </nav>
+                
+                <div className="pt-6 border-t border-gray-50">
+                  <button 
+                    onClick={handleSignOut}
+                    className="nav-link w-full text-red-500 hover:bg-red-50 hover:text-red-600 transition-all active:scale-95"
                   >
-                    <span className="text-xl">{item.icon}</span> {item.name}
-                  </Link>
-                ))}
-              </nav>
-              
-              <div className="pt-6 border-t border-gray-50">
-                <button 
-                  onClick={handleSignOut}
-                  className="nav-link w-full text-red-500 hover:bg-red-50 hover:text-red-600 transition-all active:scale-95"
-                >
-                  <span>🚪</span> Sign Out
-                </button>
-              </div>
-            </aside>
+                    <span>🚪</span> Sign Out
+                  </button>
+                </div>
+              </aside>
+            </>
           )}
 
           {/* Main Area */}

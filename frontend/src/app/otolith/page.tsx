@@ -23,7 +23,7 @@ export default function OtolithPage() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="clean-card flex flex-col items-center justify-center border-2 border-dashed border-gray-100 min-h-[400px] relative overflow-hidden">
+        <div className="clean-card flex flex-col items-center justify-center border-2 border-dashed border-gray-100 min-h-[300px] lg:min-h-[400px] relative overflow-hidden">
             {preview ? (
               <div className="absolute inset-0 w-full h-full">
                 <img src={preview} alt="Otolith Scan" className="w-full h-full object-cover opacity-40" />

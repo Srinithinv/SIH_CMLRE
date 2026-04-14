@@ -22,13 +22,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Minimalist Clean Components */
+/* Responsive Components */
 .sidebar {
-  @apply fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-100 flex flex-col p-6 z-50 shadow-sm;
+  @apply fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-100 flex flex-col p-6 z-[60] shadow-sm transition-transform duration-300 lg:translate-x-0;
+}
+
+.sidebar.mobile-hidden {
+  @apply -translate-x-full lg:translate-x-0;
 }
 
 .main-content {
-  @apply ml-64 p-10 min-h-screen relative z-30;
+  @apply p-6 lg:p-10 min-h-screen relative z-30 transition-all duration-300;
+  @apply lg:ml-64;
 }
 
 .clean-card {

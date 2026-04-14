@@ -98,44 +98,46 @@ export default function TaxonomyPage() {
       )}
 
       <div className="clean-card overflow-hidden !p-0">
-        <div className="p-6 border-b border-gray-50 bg-gray-50/30 flex justify-between items-center">
+        <div className="p-6 border-b border-gray-50 bg-gray-50/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <h3 className="text-sm font-bold text-gray-600">Species Database <span className="ml-2 font-normal text-gray-400">({taxa.length})</span></h3>
-            <input type="text" placeholder="Search registry..." className="px-3 py-1.5 border border-gray-200 rounded-lg text-sm bg-white outline-none focus:border-primary" />
+            <input type="text" placeholder="Search registry..." className="w-full sm:w-auto px-3 py-1.5 border border-gray-200 rounded-lg text-sm bg-white outline-none focus:border-primary" />
         </div>
-        <table className="w-full text-left">
-          <thead>
-            <tr className="border-b border-gray-50 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-              <th className="px-8 py-4">Scientific Name</th>
-              <th className="px-8 py-4">Family</th>
-              <th className="px-8 py-4">Common Name</th>
-              <th className="px-8 py-4">Conservation Status</th>
-              <th className="px-8 py-4">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-50">
-            {taxa.map((t) => (
-              <tr key={t.id} className="hover:bg-gray-50 transition-colors group">
-                <td className="px-8 py-5">
-                   <p className="font-bold text-gray-900 group-hover:text-primary">{t.species}</p>
-                   <p className="text-xs text-gray-400 font-medium italic">Rank: Species</p>
-                </td>
-                <td className="px-8 py-5 text-gray-600 font-medium">{t.family}</td>
-                <td className="px-8 py-5 text-gray-600">{t.common_name}</td>
-                <td className="px-8 py-5">
-                   <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-                     t.status === 'Vulnerable' ? 'bg-orange-50 text-orange-600' : 
-                     t.status === 'Near Threatened' ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'
-                   }`}>
-                     {t.status}
-                   </span>
-                </td>
-                <td className="px-8 py-5">
-                   <button className="text-gray-400 hover:text-primary transition-colors font-bold text-sm">Details</button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[800px]">
+            <thead>
+              <tr className="border-b border-gray-50 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                <th className="px-8 py-4">Scientific Name</th>
+                <th className="px-8 py-4">Family</th>
+                <th className="px-8 py-4">Common Name</th>
+                <th className="px-8 py-4">Conservation Status</th>
+                <th className="px-8 py-4">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {taxa.map((t) => (
+                <tr key={t.id} className="hover:bg-gray-50 transition-colors group">
+                  <td className="px-8 py-5">
+                     <p className="font-bold text-gray-900 group-hover:text-primary">{t.species}</p>
+                     <p className="text-xs text-gray-400 font-medium italic">Rank: Species</p>
+                  </td>
+                  <td className="px-8 py-5 text-gray-600 font-medium">{t.family}</td>
+                  <td className="px-8 py-5 text-gray-600">{t.common_name}</td>
+                  <td className="px-8 py-5">
+                     <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+                       t.status === 'Vulnerable' ? 'bg-orange-50 text-orange-600' : 
+                       t.status === 'Near Threatened' ? 'bg-amber-50 text-amber-600' : 'bg-green-50 text-green-600'
+                     }`}>
+                       {t.status}
+                     </span>
+                  </td>
+                  <td className="px-8 py-5">
+                     <button className="text-gray-400 hover:text-primary transition-colors font-bold text-sm">Details</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
