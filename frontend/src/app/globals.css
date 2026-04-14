@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fdfdfd;
+  --foreground: #1a1a1a;
+  --muted: #666666;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #f3f4f6;
+  --card-bg: #ffffff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Minimalist Clean Components */
+.sidebar {
+  @apply fixed left-0 top-0 h-screen w-64 bg-white border-r border-gray-100 flex flex-col p-6 z-50 shadow-sm;
+}
+
+.main-content {
+  @apply ml-64 p-10 min-h-screen relative z-30;
+}
+
+.clean-card {
+  @apply bg-white/70 backdrop-blur-md border border-gray-100 rounded-xl p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] transition-all duration-200;
+}
+
+.clean-card:hover {
+  @apply shadow-[0_8px_30px_rgba(0,0,0,0.04)] transform -translate-y-1 border-gray-200;
+}
+
+.nav-link {
+  @apply flex items-center gap-3 px-4 py-3 rounded-lg text-gray-500 font-medium transition-colors hover:bg-gray-50 hover:text-primary;
+}
+
+.nav-link.active {
+  @apply bg-blue-50 text-primary;
+}
+
+.title-lg {
+  @apply text-3xl font-extrabold tracking-tight text-gray-900;
+}
+
+.subtitle {
+  @apply text-gray-500 font-medium mt-1;
+}
+
+.btn-primary {
+  @apply bg-primary hover:bg-primary-hover text-white px-6 py-2.5 rounded-lg font-semibold shadow-sm transition-all active:scale-95;
+}
+
+.badge {
+  @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider;
+}
+
+.badge-success { @apply bg-green-50 text-green-600; }
+.badge-danger { @apply bg-red-50 text-red-600; }
+.badge-info { @apply bg-blue-50 text-blue-600; }
+
+/* Hybrid Aquatic Motion */
+.aquatic-bg {
+  @apply fixed inset-0 pointer-events-none overflow-hidden z-0;
+}
+
+@keyframes swim-right {
+  0% { transform: translate(-100%, 0) scaleX(1); }
+  50% { transform: translate(50vw, 20px) scaleX(1); }
+  100% { transform: translate(110vw, 0) scaleX(1); }
+}
+
+@keyframes swim-left {
+  0% { transform: translate(110vw, 0) scaleX(-1); }
+  50% { transform: translate(50vw, -20px) scaleX(-1); }
+  100% { transform: translate(-100%, 0) scaleX(-1); }
+}
+
+@keyframes bubble-float {
+  0% { transform: translateY(110vh) translateX(0); opacity: 0; }
+  20% { opacity: 0.3; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+}
+
+.animate-swim-slow {
+  animation: swim-right 40s linear infinite;
+}
+
+.animate-swim-medium {
+  animation: swim-left 25s linear infinite;
+}
+
+.bubble {
+  @apply absolute bottom-0 bg-blue-500/20 rounded-full border border-white/10;
+  animation: bubble-float 15s ease-in infinite;
+}
+
