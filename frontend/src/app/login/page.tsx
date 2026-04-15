@@ -171,7 +171,7 @@ export default function LoginPage() {
                 <p className="text-xs text-slate-400 font-bold mb-3">{email}</p>
                 
                 <div className="bg-blue-50 text-[10px] text-blue-500 font-bold p-2 rounded-lg border border-blue-100 animate-pulse">
-                   DEVELOPER HINT: Check your BACKEND TERMINAL for the 6-digit code.
+                   SYSTEM HINT: For Demo Acc, use 123456 as the security code.
                 </div>
              </div>
              
