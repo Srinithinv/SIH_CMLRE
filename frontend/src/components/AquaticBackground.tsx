@@ -11,7 +11,10 @@ const creatures = [
 
 export default function AquaticBackground() {
   const [mounted, setMounted] = useState(false);
-  const [randomData, setRandomData] = useState<{snow: any[], bubbles: any[]}>({ snow: [], bubbles: [] });
+  const [randomData, setRandomData] = useState<{
+    snow: { left: number; duration: number; delay: number; xTargets: number[] }[];
+    bubbles: { left: number; size: number; delay: number; duration: number }[];
+  }>({ snow: [], bubbles: [] });
 
   useEffect(() => {
     // Generate random data once on mount
