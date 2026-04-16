@@ -10,7 +10,8 @@ export default function EDNAViewer() {
     setLoading(true);
     try {
       const cleanSeq = sequence.replace(/\n|>/g, '');
-      const res = await fetch(`http://localhost:8000/api/v1/edna/match?sequence=${cleanSeq}`, { method: 'POST' });
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/api/v1/edna/match?sequence=${cleanSeq}`, { method: 'POST' });
       const data = await res.json();
       setResult(data);
     } catch (err) {

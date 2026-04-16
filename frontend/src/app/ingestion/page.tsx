@@ -12,7 +12,8 @@ export default function IngestionPage() {
 
   const fetchRecords = async () => {
     try {
-      const res = await fetch('http://localhost:8000/api/v1/ingestion/records');
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/api/v1/ingestion/records`);
       const data = await res.json();
       setFiles(data);
     } catch (err) {
@@ -28,7 +29,8 @@ export default function IngestionPage() {
       const formData = new FormData();
       formData.append('file', file);
       try {
-        const res = await fetch('http://localhost:8000/api/v1/ingestion/upload/oceanographic', {
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const res = await fetch(`${apiUrl}/api/v1/ingestion/upload/oceanographic`, {
           method: 'POST',
           body: formData
         });
@@ -41,7 +43,8 @@ export default function IngestionPage() {
 
   const verifyFile = async (id: number) => {
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/ingestion/records/${id}/verify`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/api/v1/ingestion/records/${id}/verify`, {
         method: 'PATCH'
       });
       if (res.ok) fetchRecords();

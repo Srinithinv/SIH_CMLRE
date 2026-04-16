@@ -21,11 +21,12 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchML = async () => {
       try {
-        const resA = await fetch(`http://localhost:8000/api/v1/analytics/anomaly?temp=${liveParams.temp}&salinity=${liveParams.sal}&do=${liveParams.do}&ph=${liveParams.ph}`);
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+        const resA = await fetch(`${apiUrl}/api/v1/analytics/anomaly?temp=${liveParams.temp}&salinity=${liveParams.sal}&do=${liveParams.do}&ph=${liveParams.ph}`);
         const dataA = await resA.json();
         setAnomaly(dataA);
 
-        const resB = await fetch(`http://localhost:8000/api/v1/analytics/synthesis?temp=${liveParams.temp}&salinity=${liveParams.sal}`);
+        const resB = await fetch(`${apiUrl}/api/v1/analytics/synthesis?temp=${liveParams.temp}&salinity=${liveParams.sal}`);
         const dataB = await resB.json();
         setAbundance(dataB);
       } catch (err) {

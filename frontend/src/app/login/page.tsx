@@ -30,7 +30,8 @@ export default function LoginPage() {
     const timeoutId = setTimeout(() => controller.abort(), 10000);
 
     try {
-      const res = await fetch(`http://localhost:8000${endpoint}`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -58,7 +59,8 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const res = await fetch(`http://localhost:8000/api/v1/auth/verify`, {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${apiUrl}/api/v1/auth/verify`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, otp })
